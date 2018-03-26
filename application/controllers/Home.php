@@ -17,9 +17,28 @@ class Home extends CI_Controller {
             //tyaa 10
             //Вывод представления page1
             //с передачей ему параметров
-            $data['title'] = 'Page1';
-            $data['text'] = 'This text was send from Home controller';
-            $data['countries'] = array('Argentina','Belgium','Canada','Great Britain');
+            $data['title'] = 'Страница1';
+            $data['text'] = 'Это представление page1, выданное контроллером Home';
+            $data['countries'] =
+                array('Argentina','Belgium','Canada','Great Britain', 'Japan', 'Russia', 'Ukraine', 'USA');
             $this->load->view('page1', $data);
 	}
+        
+        //tyaa 13
+        //Внедрение зависимости модели
+        public function __construct()
+        {
+            parent::__construct();
+            $this->load->model('home_model');
+        }
+        
+        //tyaa 14
+        //Загрузка данных при помощи модели
+        //и передача их в представление
+        public function ItemsList() {
+            $data['title'] = 'Список товаров';
+            $data['items'] = $this->home_model->getItems();
+            $this->load->view('items', $data);
+        }
+
 }

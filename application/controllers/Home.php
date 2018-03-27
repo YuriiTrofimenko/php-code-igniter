@@ -4,6 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //Контроллер главной страницы
 class Home extends CI_Controller {
 
+        //http://localhost/appci1/index.php/home/index
+        //or
+        //http://localhost/appci1/
 	public function index()
 	{
             //tyaa 7
@@ -17,11 +20,11 @@ class Home extends CI_Controller {
             //tyaa 10
             //Вывод представления page1
             //с передачей ему параметров
-            $data['title'] = 'Страница1';
+            /*$data['title'] = 'Страница1';
             $data['text'] = 'Это представление page1, выданное контроллером Home';
             $data['countries'] =
                 array('Argentina','Belgium','Canada','Great Britain', 'Japan', 'Russia', 'Ukraine', 'USA');
-            $this->load->view('page1', $data);
+            $this->load->view('page1', $data);*/
 	}
         
         //tyaa 13
@@ -35,10 +38,21 @@ class Home extends CI_Controller {
         //tyaa 14
         //Загрузка данных при помощи модели
         //и передача их в представление
+        //http://localhost/appci1/index.php/home/ItemsList
         public function ItemsList() {
+            
+            //echo '<pre>';
+            //var_dump($this->home_model->getItems());
+            //echo '</pre>';
             $data['title'] = 'Список товаров';
             $data['items'] = $this->home_model->getItems();
+            
+            //echo '<pre>';
+            //var_dump($data);
+            //echo '</pre>';
+            
             $this->load->view('items', $data);
+            
         }
 
 }
